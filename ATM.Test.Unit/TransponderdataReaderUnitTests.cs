@@ -32,25 +32,25 @@ namespace ATM.Test.Unit
         [Test]
         public void ReadTrackData_CorrectX()
         {
-            Assert.That(uut.ReadTrackData(transponderData).X, Is.EqualTo("39045"));
+            Assert.That(uut.ReadTrackData(transponderData).X, Is.EqualTo(39045));
         }
 
         [Test]
         public void ReadTrackData_CorrectY()
         {
-            Assert.That(uut.ReadTrackData(transponderData).Y, Is.EqualTo("12932"));
+            Assert.That(uut.ReadTrackData(transponderData).Y, Is.EqualTo(12932));
         }
 
         [Test]
         public void ReadTrackData_CorrectAltitude()
         {
-            Assert.That(uut.ReadTrackData(transponderData).Altitude, Is.EqualTo("14000"));
+            Assert.That(uut.ReadTrackData(transponderData).Altitude, Is.EqualTo(14000));
         }
 
         [Test]
         public void ReadTrackData_CorrectTimeStamp()
         {
-            Assert.That(uut.ReadTrackData(transponderData).TimeStamp, Is.EqualTo("20151006213456789"));
+            Assert.That(uut.ReadTrackData(transponderData).TimeStamp, Is.EqualTo(new DateTime(2015, 10, 06, 21, 34, 56,789)));
         }
     }
 }

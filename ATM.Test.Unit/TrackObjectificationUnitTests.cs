@@ -29,16 +29,16 @@ namespace ATM.Test.Unit
             _uut.TracksChanged += (o, args) => { ++_nEventsReceived; };
         }
 
-        [Test]
+        //[Test]
 
-        public void Initial_NumberChangedOnce_SumIsCorrect()
-        {
-            var args = new NumberChangedEventArgs() { Number = 4 };
+        //public void Initial_NumberChangedOnce_SumIsCorrect()
+        //{
+        //    var args = new NumberChangedEventArgs() { Number = 4 };
 
-            _numberSource.NumberChanged += Raise.EventWith(args);
+        //    _numberSource.NumberChanged += Raise.EventWith(args);
 
-            Assert.That(_sum, Is.EqualTo(4));
-        }
+        //    Assert.That(_sum, Is.EqualTo(4));
+        //}
 
     }
 }
