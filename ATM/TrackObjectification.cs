@@ -11,11 +11,12 @@ namespace ATM
     {
         public event EventHandler<TracksChangedEventArgs> TracksChanged;
         private ITransponderdataReader _transponderdataReader;
-        private List<Track> _tracks = new List<Track>();
-        private TrackRender trackRender = new TrackRender();
+        public List<Track> _tracks = new List<Track>();
+        private ITrackRender _trackRender;
 
-        public TrackObjectification(ITransponderReceiver transponderReceiver, ITransponderdataReader transponderdataReader)
+        public TrackObjectification(ITransponderReceiver transponderReceiver, ITransponderdataReader transponderdataReader,ITrackRender trackRender)
         {
+            _trackRender = trackRender;
             _transponderdataReader = transponderdataReader;
             transponderReceiver.TransponderDataReady += UpdateTrack;
         }
@@ -26,7 +27,7 @@ namespace ATM
             {
                 var track = _transponderdataReader.ReadTrackData(data);
                 _tracks.Add(track);
-                trackRender.RenderTrack(track);
+                _trackRender.RenderTrack(track);
             }
             OnTrackChanged(new TracksChangedEventArgs {Tracks = _tracks});
         }

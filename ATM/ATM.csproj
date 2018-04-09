@@ -43,6 +43,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ITrackRender.cs" />
     <Compile Include="ITracksSource.cs" />
     <Compile Include="ITransponderdataReader.cs" />
     <Compile Include="Track.cs" />
