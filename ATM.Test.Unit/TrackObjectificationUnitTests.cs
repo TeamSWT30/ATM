@@ -22,11 +22,13 @@ namespace ATM.Test.Unit
         [SetUp]
         public void SetUp()
         {
-            
+
             _trackRender = Substitute.For<ITrackRender>();
             _TpDataReader = Substitute.For<ITransponderdataReader>();
             _TpDataReceiver = Substitute.For<ITransponderReceiver>();
             _uut = new TrackObjectification(_TpDataReceiver,_TpDataReader,_trackRender);
+
+            _rawTransponderDataList = new List<string>();
             _rawTransponderDataList.Add("ATR423;39045;12932;14000;20151006213456789");
 
             _uut.TracksChanged += (o, args) => { ++_nEventsReceived; };
@@ -34,7 +36,7 @@ namespace ATM.Test.Unit
         }
 
         [Test]
-        public void AddOneTrackToList_UpdateTrackListCorrect()
+        public void AddOneTrackToList_ReadTrackDataCorrectInput()
         {
             var args = new RawTransponderDataEventArgs(_rawTransponderDataList);
 
@@ -43,6 +45,41 @@ namespace ATM.Test.Unit
             _TpDataReader.Received(1).ReadTrackData("ATR423;39045;12932;14000;20151006213456789");
 
         }
+
+        [TestCase(0)]
+        [TestCase(5)]
+        public void AddMultipleTracksToList_ReadTrackDataCorrectInput(int length)
+        {
+            var args = new RawTransponderDataEventArgs(_rawTransponderDataList);
+
+            for (int i = 0; i < length; i++)
+            {
+                _TpDataReceiver.TransponderDataReady += Raise.EventWith(args);
+            }
+
+            _TpDataReader.Received(length).ReadTrackData("ATR423;39045;12932;14000;20151006213456789");
+
+        }
+
+
+        [TestCase(0)]
+        [TestCase(5)]
+        public void AddMultipleTracksToList_CorrectNumberOfEvents(int numberOfEvents)
+        {
+            var args = new RawTransponderDataEventArgs(_rawTransponderDataList);
+
+            for (int i = 0; i < numberOfEvents; i++)
+            {
+                _TpDataReceiver.TransponderDataReady += Raise.EventWith(args);
+            }
+
+            Assert.That(_nEventsReceived, Is.EqualTo(numberOfEvents));
+
+        }
+
+
+
+
 
     }
 }
