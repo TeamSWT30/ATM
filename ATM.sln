@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.Test.Unit", "ATM.Test.U
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.Test.Integration", "ATM.Test.Integration\ATM.Test.Integration.csproj", "{380A44C7-6158-4713-BCD4-F5C18FCC909E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.Application", "ATM.Application\ATM.Application.csproj", "{33007FDD-3566-49CF-8C1B-F31F88777BAD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{380A44C7-6158-4713-BCD4-F5C18FCC909E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{380A44C7-6158-4713-BCD4-F5C18FCC909E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{380A44C7-6158-4713-BCD4-F5C18FCC909E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33007FDD-3566-49CF-8C1B-F31F88777BAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33007FDD-3566-49CF-8C1B-F31F88777BAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33007FDD-3566-49CF-8C1B-F31F88777BAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33007FDD-3566-49CF-8C1B-F31F88777BAD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
