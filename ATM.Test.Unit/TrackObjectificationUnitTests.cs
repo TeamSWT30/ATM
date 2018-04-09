@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using NSubstitute;
-using ATM;
+using ATM.Classes;
 
 namespace ATM.Test.Unit
 {
     [TestFixture]
     public class TrackObjectificationUnitTests
     {
-        private TrackObjectification lolTrackObjectification;
+        private TrackObjectification 
     }
 }
