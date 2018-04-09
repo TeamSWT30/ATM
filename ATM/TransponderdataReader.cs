@@ -18,7 +18,7 @@ namespace ATM
             track.X = Int32.Parse(seperatedStrings[1]);
             track.Y = Int32.Parse(seperatedStrings[2]);
             track.Altitude = Int32.Parse(seperatedStrings[3]);
-            track.TimeStamp = DateTime.ParseExact(seperatedStrings[4], "yyyy-MM-dd HH:mm:ss:fff", CultureInfo.InvariantCulture);
+            track.TimeStamp = DateTime.ParseExact(seperatedStrings[4], "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture);
             return track;
         }
     }
