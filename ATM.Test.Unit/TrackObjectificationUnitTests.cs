@@ -12,6 +12,8 @@ namespace ATM.Test.Unit
     [TestFixture]
     public class TrackObjectificationUnitTests
     {
-        private TrackObjectification lolTrackObjectification;
+        private TrackObjectification _uut;
+        private TransponderdataReader TpDataReader;
+        private TransponderDataReceiver
     }
 }
