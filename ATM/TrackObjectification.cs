@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TransponderReceiver;
 
-namespace ATM.Classes
+namespace ATM
 {
     public class TrackObjectification : ITracksSource
     {
