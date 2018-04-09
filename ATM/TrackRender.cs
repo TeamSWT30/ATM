@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public class TrackRender
+    public class TrackRender : ITrackRender
     {
         public void RenderTrack(Track track)
         {

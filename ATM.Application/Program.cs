@@ -13,7 +13,8 @@ namespace ATM.Application
         {
             var transponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
             var transponderdataReader = new TransponderdataReader();
-            var trackObjectification = new TrackObjectification(transponderReceiver,transponderdataReader);
+            var trackRender = new TrackRender();
+            var trackObjectification = new TrackObjectification(transponderReceiver,transponderdataReader ,trackRender);
 
             Console.ReadLine();
         }
