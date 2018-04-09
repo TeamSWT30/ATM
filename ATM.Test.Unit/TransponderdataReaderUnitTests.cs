@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using NSubstitute;
 using NUnit.Framework;
 using TransponderReceiver;
+using ATM;
 
 namespace ATM.Test.Unit
 {
-    class TransponderdataReaderUnitTests
+    [TestFixture]
+    public class TransponderdataReaderUnitTests
     {
-
+        private TransponderdataReader
     }
 }
