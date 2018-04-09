@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public class TransponderdataReader
+    public class TransponderdataReader : ITransponderdataReader
     {
         public Track ReadTrackData(string trackData)
         {

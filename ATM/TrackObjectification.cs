@@ -10,11 +10,11 @@ namespace ATM
     public class TrackObjectification : ITracksSource
     {
         public event EventHandler<TracksChangedEventArgs> TracksChanged;
-        private TransponderdataReader _transponderdataReader;
+        private ITransponderdataReader _transponderdataReader;
         private List<Track> _tracks = new List<Track>();
         private TrackRender trackRender = new TrackRender();
 
-        public TrackObjectification(ITransponderReceiver transponderReceiver, TransponderdataReader transponderdataReader)
+        public TrackObjectification(ITransponderReceiver transponderReceiver, ITransponderdataReader transponderdataReader)
         {
             _transponderdataReader = transponderdataReader;
             transponderReceiver.TransponderDataReady += UpdateTrack;
