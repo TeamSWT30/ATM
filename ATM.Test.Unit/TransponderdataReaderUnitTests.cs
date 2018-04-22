@@ -48,9 +48,45 @@ namespace ATM.Test.Unit
         }
 
         [Test]
-        public void ReadTrackData_CorrectTimeStamp()
+        public void ReadTrackData_CorrectTimeStampYear()
         {
-            Assert.That(uut.ReadTrackData(transponderData).TimeStamp, Is.EqualTo(new DateTime(2015, 10, 06, 21, 34, 56,789)));
+            Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Year, Is.EqualTo(2015));
+        }
+
+        [Test]
+        public void ReadTrackData_CorrectTimeStampMonth()
+        {
+            Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Month, Is.EqualTo(10));
+        }
+
+        [Test]
+        public void ReadTrackData_CorrectTimeStampDay()
+        {
+            Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Day, Is.EqualTo(06));
+        }
+
+        [Test]
+        public void ReadTrackData_CorrectTimeStampHour()
+        {
+            Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Hour, Is.EqualTo(21));
+        }
+
+        [Test]
+        public void ReadTrackData_CorrectTimeStampMinute()
+        {
+            Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Minute, Is.EqualTo(34));
+        }
+
+        [Test]
+        public void ReadTrackData_CorrectTimeStampSecond()
+        {
+            Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Second, Is.EqualTo(56));
+        }
+
+        [Test]
+        public void ReadTrackData_CorrectTimeStampMS()
+        {
+            Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Millisecond, Is.EqualTo(789));
         }
     }
 }
