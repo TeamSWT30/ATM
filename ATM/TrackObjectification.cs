@@ -14,15 +14,13 @@ namespace ATM
         private List<Track> tracks;
         private ITrackRender _trackRender;
 
-        private Airspace _airspace = new Airspace()
-        {
-            SWCornerY = 10000, SWCornerX = 10000, NECornerX = 90000, NECornerY = 90000, lowerAlt = 500, upperAlt = 20000 
-        };
+        private IAirspace _airspace;
 
-        public TrackObjectification(ITransponderReceiver transponderReceiver, ITransponderdataReader transponderdataReader,ITrackRender trackRender)
+        public TrackObjectification(ITransponderReceiver transponderReceiver, ITransponderdataReader transponderdataReader,ITrackRender trackRender, IAirspace airspace)
         {
             _trackRender = trackRender;
             _transponderdataReader = transponderdataReader;
+            _airspace = airspace;
             tracks = new List<Track>();
 
             transponderReceiver.TransponderDataReady += UpdateTrack;
@@ -33,9 +31,7 @@ namespace ATM
             foreach (var data in args.TransponderData)
             {
                 var track = _transponderdataReader.ReadTrackData(data);
-                if (track.X >= _airspace.SWCornerX && track.X <= _airspace.NECornerX &&
-                    track.Y >= _airspace.SWCornerY && track.Y <= _airspace.NECornerY &&
-                    track.Altitude >= _airspace.lowerAlt && track.Altitude <= _airspace.upperAlt)
+                if (_airspace.IsTrackInAirspace(track))
                 {
                     tracks.Add(track);
                     _trackRender.RenderTrack(track);
