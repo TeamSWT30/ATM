@@ -11,7 +11,7 @@ namespace ATM
     {
         public event EventHandler<TracksChangedEventArgs> TracksChanged;
         private ITransponderdataReader _transponderdataReader;
-        public List<Track> _tracks = new List<Track>();
+        private List<Track> tracks;
         private ITrackRender _trackRender;
 
         private Airspace _airspace = new Airspace()
@@ -23,7 +23,8 @@ namespace ATM
         {
             _trackRender = trackRender;
             _transponderdataReader = transponderdataReader;
-            
+            tracks = new List<Track>();
+
             transponderReceiver.TransponderDataReady += UpdateTrack;
         }
 
@@ -36,11 +37,14 @@ namespace ATM
                     track.Y >= _airspace.SWCornerY && track.Y <= _airspace.NECornerY &&
                     track.Altitude >= _airspace.lowerAlt && track.Altitude <= _airspace.upperAlt)
                 {
-                    _tracks.Add(track);
+                    tracks.Add(track);
                     _trackRender.RenderTrack(track);
                 }
             }
-            OnTrackChanged(new TracksChangedEventArgs {Tracks = _tracks});
+            if (tracks.Count != 0)
+            {
+                OnTrackChanged(new TracksChangedEventArgs {Tracks =tracks});
+            }
         }
 
         private void OnTrackChanged(TracksChangedEventArgs track)

@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Airspace.cs" />
+    <Compile Include="CalcVelocityCourse.cs" />
     <Compile Include="ITrackRender.cs" />
     <Compile Include="ITracksSource.cs" />
     <Compile Include="ITransponderdataReader.cs" />
