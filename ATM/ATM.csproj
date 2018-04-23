@@ -45,10 +45,13 @@
   <ItemGroup>
     <Compile Include="Airspace.cs" />
     <Compile Include="CalcVelocityCourse.cs" />
-    <Compile Include="IAirspace.cs" />
-    <Compile Include="ITrackRender.cs" />
-    <Compile Include="ITracksSource.cs" />
-    <Compile Include="ITransponderdataReader.cs" />
+    <Compile Include="Conflict.cs" />
+    <Compile Include="Interfaces\IAirspace.cs" />
+    <Compile Include="Interfaces\ICalcVelocityCourse.cs" />
+    <Compile Include="Interfaces\IConflict.cs" />
+    <Compile Include="Interfaces\ITrackRender.cs" />
+    <Compile Include="Interfaces\ITracksSource.cs" />
+    <Compile Include="Interfaces\ITransponderdataReader.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrackObjectification.cs" />

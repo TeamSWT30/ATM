@@ -39,7 +39,8 @@ namespace ATM
             }
             if (tracks.Count != 0)
             {
-                OnTrackChanged(new TracksChangedEventArgs {Tracks =tracks});
+                var handler = TracksChanged;
+                handler?.Invoke(this, new TracksChangedEventArgs(tracks));
             }
         }
 
