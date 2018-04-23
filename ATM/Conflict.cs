@@ -10,7 +10,7 @@ namespace ATM
     public class Conflict : IConflict
     {
         private List<Track> ConflictingTracks;
-        event EventHandler<SeperationEventArgs> SeperationEvent;
+        public event EventHandler<SeperationEventArgs> SeperationEvent;
 
         public void CheckForConflicts(List<Track> Tracks)
         {
