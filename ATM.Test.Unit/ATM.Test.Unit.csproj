@@ -59,6 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AirspaceUnitTests.cs" />
+    <Compile Include="ConflictUnitTests.cs" />
     <Compile Include="TrackObjectificationUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TransponderdataReaderUnitTests.cs" />

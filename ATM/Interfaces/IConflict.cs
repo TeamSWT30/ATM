@@ -8,9 +8,9 @@ namespace ATM.Interfaces
 {
     public class SeperationEventArgs : EventArgs
     {
-        public string tag1 { get; set; };
-        public string tag2 { get; set; };
-        public DateTime time { get; set; };
+        public string tag1 { get; set; }
+        public string tag2 { get; set; }
+        public DateTime time { get; set; }
 
     }
     public interface IConflict

@@ -14,6 +14,8 @@ namespace ATM
             Console.WriteLine("X: " + track.X);
             Console.WriteLine("Y: " + track.Y);
             Console.WriteLine("Altitude: " + track.Altitude);
+            Console.WriteLine("Velocity: " + track.Velocity); 
+            Console.WriteLine("Course: " + track.Course);
             Console.WriteLine("Timestamp: " + track.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss:fff"));
         }
     }
