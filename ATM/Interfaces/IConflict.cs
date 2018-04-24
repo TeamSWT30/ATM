@@ -22,5 +22,6 @@ namespace ATM
     public interface IConflict
     {
         event EventHandler<SeperationEventArgs> SeperationEvent;
+        void CheckForConflicts(List<Track> Tracks);
     }
 }

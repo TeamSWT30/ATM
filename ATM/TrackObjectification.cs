@@ -29,7 +29,46 @@ namespace ATM
 
         private void OnTracksChanged(Object o, TracksChangedEventArgs e)
         {
-            
+            if (e.Tracks.Count != 0 && Tracks.Count == 0)
+            {
+                foreach (var track in e.Tracks)
+                {
+                    if (_airspace.IsTrackInAirspace(track))
+                    {
+                        Tracks.Add(track);
+                    }
+                }
+            }
+
+            else if (e.Tracks.Count != 0 && Tracks.Count != 0)
+            {
+                foreach (var oldTrack in e.Tracks)
+                {
+                    var newTrack = Tracks.Find(i => i.Tag == oldTrack.Tag);
+                    if (_airspace.IsTrackInAirspace(oldTrack) && newTrack == null)
+                    {
+                        Tracks.Add(oldTrack);
+                    }
+
+                    else if (!_airspace.IsTrackInAirspace(oldTrack) && newTrack != null)
+                    {
+                        Tracks.Remove(newTrack);
+                    }
+
+                    else
+                    {
+                        oldTrack.Course = _calc.CalculateCourse(oldTrack, newTrack);
+                        oldTrack.Velocity = _calc.CalculateVelocity(oldTrack, newTrack);
+                        Tracks[Tracks.IndexOf(newTrack)] = oldTrack;
+                    }
+                }
+            }
+            Console.Clear();
+            foreach (var track in Tracks)
+            {
+                _render.RenderTrack(track);
+            }
+            _conflict.CheckForConflicts(Tracks);
         }
 
 
