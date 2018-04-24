@@ -10,6 +10,5 @@ namespace ATM.Interfaces
     {
         void WriteToFile(string track1, string track2);
 
-
     }
 }
