@@ -44,24 +44,24 @@ namespace ATM
 
             else if (e.Tracks.Count != 0 && Tracks.Count != 0)
             {
-                foreach (var oldTrack in e.Tracks)
+                foreach (var newTrack in e.Tracks)
                 {
-                    var newTrack = Tracks.Find(i => i.Tag == oldTrack.Tag);
-                    if (_airspace.IsTrackInAirspace(oldTrack) && newTrack == null)
+                    var oldTrack = Tracks.Find(i => i.Tag == newTrack.Tag);
+                    if (_airspace.IsTrackInAirspace(newTrack) && oldTrack == null)
                     {
-                        Tracks.Add(oldTrack);
+                        Tracks.Add(newTrack);
                     }
 
-                    else if (!_airspace.IsTrackInAirspace(oldTrack) && newTrack != null)
+                    else if (!_airspace.IsTrackInAirspace(newTrack) && oldTrack != null)
                     {
-                        Tracks.Remove(Tracks[Tracks.IndexOf(newTrack)]);
+                        Tracks.Remove(Tracks[Tracks.IndexOf(oldTrack)]);
                     }
 
-                    else
+                    else if(_airspace.IsTrackInAirspace(newTrack) && oldTrack != null)
                     {
-                        oldTrack.Course = _calc.CalculateCourse(oldTrack, Tracks[Tracks.IndexOf(newTrack)]);
-                        oldTrack.Velocity = _calc.CalculateVelocity(oldTrack, Tracks[Tracks.IndexOf(newTrack)]);
-                        Tracks[Tracks.IndexOf(newTrack)] = oldTrack;
+                        newTrack.Course = _calc.CalculateCourse(Tracks[Tracks.IndexOf(oldTrack)], newTrack);
+                        newTrack.Velocity = _calc.CalculateVelocity(Tracks[Tracks.IndexOf(oldTrack)], newTrack);
+                        Tracks[Tracks.IndexOf(oldTrack)] = newTrack;
                     }
                 }
             }

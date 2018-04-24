@@ -17,10 +17,19 @@ namespace ATM
         }
         public void WriteToFile(object sender, SeperationEventArgs e)
         {
-            Directory.CreateDirectory(@"C:\\ATM\\");
-            using (StreamWriter log = File.AppendText(@"C:\\ATM\\CollidingTracks.txt"))
+            string path = "ConflictingTracks.txt";
+
+            if (!File.Exists(path))
             {
-                log.Write("Seperationevent on" + e.Tag1 + " and " + e.Tag2 + " at time: " + e.Time);
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.Write("Log created");
+                }
+            }
+
+            using (StreamWriter sw = File.AppendText(path))
+            {
+                sw.Write("Seperationevent on" + e.Tag1 + " and " + e.Tag2 + " at time: " + e.Time);
             }
         }
 

@@ -23,10 +23,15 @@ namespace ATM
             // X = cos θb * sin ∆L
             // Y = cos θa * sin θb – sin θa * cos θb * cos ∆L
 
-            double X = Math.Cos(newTrack.X) * Math.Sin(newTrack.Y - oldTrack.Y);
-            double Y = Math.Cos(oldTrack.X) * Math.Sin(newTrack.X) -
-                    Math.Sin(newTrack.X) * Math.Cos(newTrack.X) * Math.Cos(newTrack.Y - oldTrack.Y);
-            double course = Math.Atan2(X, Y);
+            double X = Math.Abs(newTrack.X - oldTrack.X);
+            double Y = Math.Abs(newTrack.Y - oldTrack.Y);
+            double course = Math.Atan2(X, Y) * (180 / Math.PI);
+
+            if (course < 0)
+            {
+                course += 360;
+            }
+
             return course;
         }
     }
