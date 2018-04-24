@@ -13,7 +13,7 @@ namespace ATM.Interfaces
         public DateTime time { get; set; };
 
     }
-    interface IConflict
+    public interface IConflict
     {
         event EventHandler<SeperationEventArgs> SeperationEvent;
     }
