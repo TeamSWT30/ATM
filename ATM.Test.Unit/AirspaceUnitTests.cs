@@ -21,32 +21,32 @@ namespace ATM.Test.Unit
         public void setup()
         {
             _uut = new ATM.Airspace();
-            _track = Substitute.For<Track>();
-
         }
 
-        [TestCase(10000, 10000)]
-        [TestCase(11000, 11000)]
-        [TestCase(89000, 89000)]
-        [TestCase(90000, 90000)]
-        public void TrackInsideAirspace_ReturnTrue(int x, int y)
+        [TestCase(10000, 10000,20000)]
+        [TestCase(11000, 11000,20000)]
+        [TestCase(89000, 89000,200)]
+        [TestCase(90000, 90000,200)]
+        public void TrackInsideAirspace_ReturnTrue(int x, int y,int alt)
         {
-            var _coordinates= _uut.
+            _track = new Track(){X = x, Y = y, Altitude = alt};
 
-            Assert.That(_coordinates.Contains(x, y), Is.EqualTo(true));
+            Assert.That(_uut.IsTrackInAirspace(_track),Is.EqualTo(true));
         }
 
-        [TestCase(9999, 10000)]
-        [TestCase(10000, 9999)]
-        [TestCase(9999, 9999)]
-        [TestCase(90000, 90001)]
-        [TestCase(90001, 90000)]
-        [TestCase(90001, 90001)]
-        public void TrackInsideAirspace_ReturnFalse(int x, int y)
+        [TestCase(9999, 10000,1000)]
+        [TestCase(10000, 9999,1000)]
+        [TestCase(9999, 9999,1000)]
+        [TestCase(90000, 90001,1000)]
+        [TestCase(90001, 90000,1000)]
+        [TestCase(90001, 90001,1000)]
+        [TestCase(10000, 10000, 199)]
+        [TestCase(10000, 10000, 200001)]
+        public void TrackOutsideAirspace_ReturnFalse(int x, int y, int alt)
         {
-            var _coordinates = _uut.();
+            _track = new Track() { X = x, Y = y,Altitude = alt };
 
-            Assert.That(_coordinates.Contains(x, y), Is.EqualTo(false));
+            Assert.That(_uut.IsTrackInAirspace(_track), Is.EqualTo(false));
         }
 
 

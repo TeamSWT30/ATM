@@ -13,7 +13,7 @@ namespace ATM.Test.Unit
     [TestFixture]
     public class TransponderdataReaderUnitTests
     {
-        private TransponderdataReader uut;
+        private ITransponderdataReader uut;
         private string transponderData;
 
         [SetUp]
