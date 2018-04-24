@@ -24,10 +24,8 @@ namespace ATM
                     int verticalDist = Math.Abs(track1.Altitude - track2.Altitude);
                     if (verticalDist < 300 && horisontalDist < 5000 && track1.Tag != track2.Tag)
                     {
-                        ConflictingTracks.Add(track1);
-                        ConflictingTracks.Add(track2);
-
-
+                        SeperationEventArgs SepEvent = new SeperationEventArgs(track1.Tag, track2.Tag, DateTime.Now);
+                        OnSperationEvent(SepEvent);
                     }
                 }
             }

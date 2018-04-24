@@ -3,29 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ATM.Interfaces;
 
 namespace ATM
 {
-    public class CalcVelocityCourse
+    public class CalcVelocityCourse : ICalcVelocityCourse
     {
-        public int CalculateVelocity(Track oldTrack, Track newTrack)
+        public double CalculateVelocity(Track oldTrack, Track newTrack)
         {
-            int time = (int) newTrack.TimeStamp.Subtract(oldTrack.TimeStamp).TotalSeconds;
-            int distance = (int) Math.Sqrt(Math.Pow(newTrack.X- oldTrack.X, 2) + (int) Math.Pow(newTrack.Y - oldTrack.Y, 2));
-            int velocity = distance / time;
+            double time = newTrack.TimeStamp.Subtract(oldTrack.TimeStamp).TotalSeconds;
+            double distance = Math.Sqrt(Math.Pow(newTrack.X- oldTrack.X, 2) + Math.Pow(newTrack.Y - oldTrack.Y, 2));
+            double velocity = distance / time;
             return velocity;
         }
 
-        public int CalculateCourse(Track oldTrack, Track newTrack)
+        public double CalculateCourse(Track oldTrack, Track newTrack)
         {
             // β = atan2(X,Y),
             // X = cos θb * sin ∆L
             // Y = cos θa * sin θb – sin θa * cos θb * cos ∆L
 
-            int X = (int) Math.Cos(newTrack.X) * (int) Math.Sin(newTrack.Y - oldTrack.Y);
-            int Y = (int) Math.Cos(oldTrack.X) * (int) Math.Sin(newTrack.X) -
-                    (int) Math.Sin(newTrack.X) * (int) Math.Cos(newTrack.X) * (int) Math.Cos(newTrack.Y - oldTrack.Y);
-            int course = (int)Math.Atan2(X, Y);
+            double X = Math.Abs(newTrack.X - oldTrack.X);
+            double Y = Math.Abs(newTrack.Y - oldTrack.Y);
+            double course = Math.Atan2(X, Y) * (180 / Math.PI);
+
+            if (course < 0)
+            {
+                course += 360;
+            }
+
             return course;
         }
     }

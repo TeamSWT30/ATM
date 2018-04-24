@@ -12,9 +12,12 @@ namespace ATM.Application
         static void Main(string[] args)
         {
             var transponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
-            var transponderdataReader = new TransponderdataReader();
-            var trackRender = new TrackRender();
-            var trackObjectification = new TrackObjectification(transponderReceiver,transponderdataReader ,trackRender);
+            var transponderdataReader = new TransponderdataReader(transponderReceiver);
+            var conflict = new Conflict();
+            var trackRender = new TrackRender(conflict);
+            var airspace = new Airspace();
+            var calc = new CalcVelocityCourse();
+            var trackObjectification = new TrackObjectification(airspace, calc, conflict, trackRender, transponderdataReader);
 
             Console.ReadLine();
         }

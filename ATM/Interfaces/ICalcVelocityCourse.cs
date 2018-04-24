@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ATM.Interfaces
 {
-    interface ICalcVelocityCourse
+    public interface ICalcVelocityCourse
     {
-        int CalculateVelocity(Track oldTrack, Track newTrack);
-        int CalculateCourse(Track oldTrack, Track newTrack);
+        double CalculateVelocity(Track oldTrack, Track newTrack);
+        double CalculateCourse(Track oldTrack, Track newTrack);
     }
 }
