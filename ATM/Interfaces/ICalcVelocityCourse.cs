@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATM
+namespace ATM.Interfaces
 {
     public interface ICalcVelocityCourse
     {
-        int CalculateVelocity(Track oldTrack, Track newTrack);
-        int CalculateCourse(Track oldTrack, Track newTrack);
+        double CalculateVelocity(Track oldTrack, Track newTrack);
+        double CalculateCourse(Track oldTrack, Track newTrack);
     }
 }

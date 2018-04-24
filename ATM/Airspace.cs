@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ATM.Interfaces;
 
 namespace ATM
 {
-    public class Airspace
+    public class Airspace : IAirspace
     {
         public int SWCornerX { get; set; }
         public int SWCornerY { get; set; }

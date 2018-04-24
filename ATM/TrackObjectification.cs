@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TransponderReceiver;
+using ATM.Interfaces;
 
 namespace ATM
 {
@@ -16,13 +17,14 @@ namespace ATM
         private ITrackRender _render;
         private ITransponderdataReader _transponderdataReader;
 
-        public TrackObjectification(IAirspace airspace, ICalcVelocityCourse calc, IConflict conflict, ITrackRender render)
+        public TrackObjectification(IAirspace airspace, ICalcVelocityCourse calc, IConflict conflict, ITrackRender render, ITransponderdataReader transponderdataReader)
         {
             Tracks = new List<Track>();
             _airspace = airspace;
             _calc = calc;
             _conflict = conflict;
             _render = render;
+            _transponderdataReader = transponderdataReader;
 
             _transponderdataReader.TracksChanged += OnTracksChanged;
         }
@@ -52,13 +54,13 @@ namespace ATM
 
                     else if (!_airspace.IsTrackInAirspace(oldTrack) && newTrack != null)
                     {
-                        Tracks.Remove(newTrack);
+                        Tracks.Remove(Tracks[Tracks.IndexOf(newTrack)]);
                     }
 
                     else
                     {
-                        oldTrack.Course = _calc.CalculateCourse(oldTrack, newTrack);
-                        oldTrack.Velocity = _calc.CalculateVelocity(oldTrack, newTrack);
+                        oldTrack.Course = _calc.CalculateCourse(oldTrack, Tracks[Tracks.IndexOf(newTrack)]);
+                        oldTrack.Velocity = _calc.CalculateVelocity(oldTrack, Tracks[Tracks.IndexOf(newTrack)]);
                         Tracks[Tracks.IndexOf(newTrack)] = oldTrack;
                     }
                 }
