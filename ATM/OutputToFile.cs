@@ -11,12 +11,16 @@ namespace ATM
 {
     class OutputToFile: IOutputToFile
     {
-        public void WriteToFile(string track1, string track2)
+        public OutputToFile(Conflict conflict)
+        {
+            conflict.SeperationEvent += WriteToFile;
+        }
+        public void WriteToFile(object sender, SeperationEventArgs e)
         {
             Directory.CreateDirectory(@"C:\\ATM\\");
             using (StreamWriter log = File.AppendText(@"C:\\ATM\\CollidingTracks.txt"))
             {
-                log.Write(track1 + " and " + track2);
+                log.Write("Seperationevent on" + e.Tag1 + " and " + e.Tag2 + " at time: " + e.Time);
             }
         }
 

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ATM.Interfaces
+namespace ATM
 {
     public interface IOutputToFile
     {
-        void WriteToFile(string track1, string track2);
+        void WriteToFile(object sender, SeperationEventArgs e);
 
     }
 }

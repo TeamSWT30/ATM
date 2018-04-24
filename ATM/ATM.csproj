@@ -51,7 +51,6 @@
     <Compile Include="Interfaces\IConflict.cs" />
     <Compile Include="Interfaces\IOutputToFile.cs" />
     <Compile Include="Interfaces\ITrackRender.cs" />
-    <Compile Include="Interfaces\ITracksSource.cs" />
     <Compile Include="Interfaces\ITransponderdataReader.cs" />
     <Compile Include="OutputToFile.cs" />
     <Compile Include="Track.cs" />
