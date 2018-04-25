@@ -20,7 +20,7 @@ namespace ATM.Test.Unit
         [SetUp]
         public void Setup()
         {
-            uut = new TransponderdataReader();
+            uut = new TransponderdataReader(transponderReceiver:ITransponderdataReader);
             transponderData = "ATR423;39045;12932;14000;20151006213456789";
         }
 

@@ -12,7 +12,7 @@ namespace ATM
         public double CalculateVelocity(Track oldTrack, Track newTrack)
         {
             double time = newTrack.TimeStamp.Subtract(oldTrack.TimeStamp).TotalSeconds;
-            double distance = Math.Sqrt(Math.Pow(newTrack.X- oldTrack.X, 2) + Math.Pow(newTrack.Y - oldTrack.Y, 2));
+            double distance = Math.Sqrt(Math.Pow(newTrack.X-oldTrack.X,2) + Math.Pow(newTrack.Y - oldTrack.Y, 2));
             double velocity = distance / time;
             return velocity;
         }
