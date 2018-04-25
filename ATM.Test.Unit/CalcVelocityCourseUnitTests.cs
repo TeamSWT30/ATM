@@ -55,10 +55,10 @@ namespace ATM.Test.Unit
             oldTrack.X = 20000;
             oldTrack.Y = 30000;
             oldTrack.Altitude = 3500;
-            oldTrack.TimeStamp = new DateTime(2015,04,25,12,00,00);
+            oldTrack.TimeStamp = new DateTime(2015, 04, 25, 12, 00, 00);
 
             newTrack.X = 20000;
-            newTrack.Y =20000;
+            newTrack.Y = 20000;
             newTrack.Altitude = 3500;
             newTrack.TimeStamp = new DateTime(2015, 04, 25, 12, 00, 50);
 
@@ -87,24 +87,52 @@ namespace ATM.Test.Unit
             //Afrundet 235,7 m/s
             Assert.That(_uut.CalculateVelocity(oldTrack, newTrack), Is.EqualTo(235.70226039551582));
         }
-        /*
-        [Test]
-        public void CalcAngle_Tracks_x1_y2_AngelIs63dot43l()
-        {
-            Track track1 = new Track();
-            Track track2 = new Track();
 
-            Assert.That(_uut.CalculateCourse(track1, track2), Is.EqualTo(63.43));
-        }
         [Test]
-        public void CalcAngle_Angleless0_degreepositiv()
+        public void CalcCourse_West()
         {
-            Track track1 = new Track();
-            Track track2 = new Track();
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
 
-            
-            Assert.That(_uut.CalculateCourse(track1, track2), Is.EqualTo(78.69));
+            oldTrack.X = 50000;
+            oldTrack.Y = 50000;
+
+            newTrack.X = 40000;
+            newTrack.Y = 50000;
+
+            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(90));
         }
-        */
+
+        [Test]
+        public void CalcCourse_North()
+        {
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
+
+            oldTrack.X = 30000;
+            oldTrack.Y = 30000;
+
+            newTrack.X = 30000;
+            newTrack.Y = 40000;
+
+
+            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(0));
+        }
+
+        [Test]
+        public void CalcCourse_NorthEast()
+        {
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
+
+            oldTrack.X = 30000;
+            oldTrack.Y = 30000;
+
+            newTrack.X = 40000;
+            newTrack.Y = 40000;
+
+
+            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(45));
+        }
     }
 }
