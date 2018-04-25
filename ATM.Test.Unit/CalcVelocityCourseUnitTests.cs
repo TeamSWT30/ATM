@@ -25,7 +25,7 @@ namespace ATM.Test.Unit
 
         [Test]
 
-        public void CalcVelocity_TwoTracksIn_RightVelocityOut()
+        public void CalcVelocity_StraightHorisontal_RightVelocityOut()
         {
             Track oldTrack = new Track();
             Track newTrack = new Track();
@@ -47,7 +47,7 @@ namespace ATM.Test.Unit
 
         [Test]
 
-        public void CalcVelocity_AnotherDirection_RightVelocityOut()
+        public void CalcVelocity_StraightVertical_RightVelocityOut()
         {
             Track oldTrack = new Track();
             Track newTrack = new Track();
@@ -67,6 +67,26 @@ namespace ATM.Test.Unit
             Assert.That(_uut.CalculateVelocity(oldTrack, newTrack), Is.EqualTo(200));
         }
 
+        [Test]
+        public void CalcVelocity_Diagonal_RightVelocityOut()
+        {
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
+
+            oldTrack.X = 30000;
+            oldTrack.Y = 30000;
+            oldTrack.Altitude = 3500;
+            oldTrack.TimeStamp = new DateTime(2015, 04, 25, 12, 00, 00);
+
+            newTrack.X = 20000;
+            newTrack.Y = 20000;
+            newTrack.Altitude = 3500;
+            newTrack.TimeStamp = new DateTime(2015, 04, 25, 12, 01, 00);
+
+
+            //Afrundet 235,7 m/s
+            Assert.That(_uut.CalculateVelocity(oldTrack, newTrack), Is.EqualTo(235.70226039551582));
+        }
         /*
         [Test]
         public void CalcAngle_Tracks_x1_y2_AngelIs63dot43l()
