@@ -9,13 +9,11 @@ namespace ATM
 {
     public class Conflict : IConflict
     {
-        private List<Track> ConflictingTracks;
         public event EventHandler<SeperationEventArgs> SeperationEvent;
 
         public void CheckForConflicts(List<Track> Tracks)
         {
-            ConflictingTracks = new List<Track>();
-
+            
             foreach (var track1 in Tracks)
             {
                 foreach (var track2 in Tracks)
