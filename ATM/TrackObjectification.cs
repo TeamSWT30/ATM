@@ -29,7 +29,7 @@ namespace ATM
             _transponderdataReader.TracksChanged += OnTracksChanged;
         }
 
-        private void OnTracksChanged(Object o, TracksChangedEventArgs e)
+        public void OnTracksChanged(Object o, TracksChangedEventArgs e)
         {
             if (e.Tracks.Count != 0 && Tracks.Count == 0)
             {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using NSubstitute;
 using ATM;
+using ATM.Interfaces;
 using TransponderReceiver;
 
 namespace ATM.Test.Unit
@@ -19,7 +20,9 @@ namespace ATM.Test.Unit
         private ITrackRender _trackRender;
         private int _nEventsReceived;
         private IAirspace _airSpace;
-        private List<string> _rawTransponderDataList; 
+        private List<string> _rawTransponderDataList;
+        private IConflict _conflict;
+        private ICalcVelocityCourse _calc;
         [SetUp]
         public void SetUp()
         {
@@ -28,12 +31,14 @@ namespace ATM.Test.Unit
             _TpDataReader = Substitute.For<ITransponderdataReader>();
             _TpDataReceiver = Substitute.For<ITransponderReceiver>();
             _airSpace = Substitute.For<IAirspace>();
-            _uut = new TrackObjectification(_TpDataReceiver,_TpDataReader,_trackRender,_airSpace);
+            _conflict = Substitute.For<IConflict>();
+            _calc = Substitute.For<ICalcVelocityCourse>();
+            _uut = new TrackObjectification(_airSpace,_calc,_conflict,_trackRender,_TpDataReader);
 
             _rawTransponderDataList = new List<string>();
             _rawTransponderDataList.Add("ATR423;39045;12932;14000;20151006213456789");
 
-            _uut.TracksChanged += (o, args) => { ++_nEventsReceived; };
+            _uut.OnTracksChanged += (o, args) => { ++_nEventsReceived; };
 
         }
 
@@ -78,10 +83,6 @@ namespace ATM.Test.Unit
             Assert.That(_nEventsReceived, Is.EqualTo(numberOfEvents));
 
         }
-
-
-
-
 
     }
 }
