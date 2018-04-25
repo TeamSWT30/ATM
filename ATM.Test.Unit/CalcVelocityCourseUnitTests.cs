@@ -89,7 +89,7 @@ namespace ATM.Test.Unit
         }
 
         [Test]
-        public void CalcCourse_West()
+        public void CalcCourse_East()
         {
             Track oldTrack = new Track();
             Track newTrack = new Track();
@@ -134,5 +134,70 @@ namespace ATM.Test.Unit
 
             Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(45));
         }
+
+        [Test]
+        public void CalcCourse_SouthEast()
+        {
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
+
+            oldTrack.X = 30000;
+            oldTrack.Y = 30000;
+
+            newTrack.X = 40000;
+            newTrack.Y = 20000;
+
+
+            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(135));
+        }
+
+        [Test]
+        public void CalcCourse_South()
+        {
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
+
+            oldTrack.X = 30000;
+            oldTrack.Y = 30000;
+
+            newTrack.X = 30000;
+            newTrack.Y = 20000;
+
+
+            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(180));
+        }
+
+        [Test]
+        public void CalcCourse_NorthWest()
+        {
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
+
+            oldTrack.X = 30000;
+            oldTrack.Y = 30000;
+
+            newTrack.X = 20000;
+            newTrack.Y = 40000;
+
+
+            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(315));
+        }
+
+        [Test]
+          public void CalcCourse_SouththWest()
+          {
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
+
+            oldTrack.X = 30000;
+            oldTrack.Y = 30000;
+
+            newTrack.X = 20000;
+            newTrack.Y = 20000;
+
+
+            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(225));
+          }
     }
 }
+
