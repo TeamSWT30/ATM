@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +7,7 @@ using NSubstitute;
 using NUnit.Framework;
 using TransponderReceiver;
 using ATM;
+using ATM.Interfaces;
 
 namespace ATM.Test.Unit
 {
@@ -89,4 +90,4 @@ namespace ATM.Test.Unit
             Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Millisecond, Is.EqualTo(789));
         }
     }
-}
+}*/

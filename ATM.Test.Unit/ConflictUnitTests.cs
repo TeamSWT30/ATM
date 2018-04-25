@@ -43,6 +43,7 @@ namespace ATM.Test.Unit
             //track 2 og 3 kolliderer ikke pga både højde- og distanceforskellen
             // track 3 og 1 kolliderer ikke, da de flyver parallelt
             //track 4 og 1 kolliderer, da der ikke er nok forskel i distance eller højde
+
         }
     }
 }
