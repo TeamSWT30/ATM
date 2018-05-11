@@ -9,10 +9,20 @@ namespace ATM
 {
     public class TrackRender : ITrackRender
     {
-        public TrackRender(IConflict conflict)
+        public TrackRender(ITrackUpdate trackUpdate)
         {
-            conflict.SeperationEvent += RenderSeperation;
+            trackUpdate.TracksUpdated += RenderTracks;
         }
+
+        private void RenderTracks(object o, TracksUpdatedEventArgs args)
+        {
+            Console.Clear();
+            foreach (var track in args.UpdatedTracks)
+            {
+                RenderTrack(track);
+            }
+        }
+
         public void RenderTrack(Track track)
         {
             Console.WriteLine("Tag: " + track.Tag);
@@ -23,11 +33,6 @@ namespace ATM
             Console.WriteLine("Course: " + track.Course);
             Console.WriteLine("Timestamp: " + track.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss:fff"));
             Console.WriteLine();
-        }
-
-        public void RenderSeperation(object sender, SeperationEventArgs e)
-        {
-            Console.WriteLine("Track with tag: " + e.Tag1 + " and track with tag: " + e.Tag2 + " are in conflict. Seperation needed! Time: " + e.Time);
         }
     }
 }
