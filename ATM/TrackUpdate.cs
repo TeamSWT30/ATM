@@ -11,31 +11,50 @@ namespace ATM
     {
         public event EventHandler<TracksUpdatedEventArgs> TracksUpdated;
         private List<Track> UpdatedTracks;
-        private ICalcVelocityCourse _calcVelocityCourse;
+        private ICalcVelocityCourse _calc;
 
 
         public TrackUpdate(IFiltering filtering, ICalcVelocityCourse calcVelocityCourse)
         {
             UpdatedTracks = new List<Track>();
-            _calcVelocityCourse = calcVelocityCourse;
+            _calc = calcVelocityCourse;
 
             filtering.TracksFiltered += UpdateTrack;
         }
 
         private void UpdateTrack(object o, TracksFilteredEventArgs args)
         {
-            foreach (var track in args.Tracks)
+            if (args.FilteredTracks.Count != 0 && UpdatedTracks.Count == 0)
             {
-                if (_airspace.IsTrackInAirspace(track))
+                foreach (var track in args.FilteredTracks)
                 {
-                    FilteredTracks.Add(track);
+                    UpdatedTracks.Add(track);
                 }
             }
 
-            if (FilteredTracks.Count != 0)
+            else if (args.FilteredTracks.Count != 0 && UpdatedTracks.Count != 0)
             {
-                var handler = TracksFiltered;
-                handler?.Invoke(this, new TracksFilteredEventArgs(FilteredTracks));
+                foreach (var newTrack in args.FilteredTracks)
+                {
+                    var oldTrack = UpdatedTracks.Find(i => i.Tag == newTrack.Tag);
+                    if (oldTrack == null)
+                    {
+                        UpdatedTracks.Add(newTrack);
+                    }
+
+                    else
+                    {
+                        newTrack.Course = _calc.CalculateCourse(UpdatedTracks[UpdatedTracks.IndexOf(oldTrack)], newTrack);
+                        newTrack.Velocity = _calc.CalculateVelocity(UpdatedTracks[UpdatedTracks.IndexOf(oldTrack)], newTrack);
+                        UpdatedTracks[UpdatedTracks.IndexOf(oldTrack)] = newTrack;
+                    }
+                }
+            }
+
+            if (UpdatedTracks.Count != 0)
+            {
+                var handler = TracksUpdated;
+                handler?.Invoke(this, new TracksUpdatedEventArgs(UpdatedTracks));
             }
         }
     }
