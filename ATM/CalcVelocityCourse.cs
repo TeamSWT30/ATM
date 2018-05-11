@@ -32,6 +32,18 @@ namespace ATM
                 course += 360;
             }
 
+            if (newTrack.X > oldTrack.X && newTrack.Y < oldTrack.Y)
+            {
+                course += 90;
+            }
+            else if (newTrack.X <= oldTrack.X && newTrack.Y < oldTrack.Y)
+            {
+                course += 180;
+            }
+            else if (newTrack.X < oldTrack.X && newTrack.Y > oldTrack.Y)
+            {
+                course += 270;
+            }
             return course;
         }
     }

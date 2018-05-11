@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,11 +16,13 @@ namespace ATM.Test.Unit
     {
         private ITransponderdataReader uut;
         private string transponderData;
+        private ITransponderReceiver _transponderReceiver;
 
         [SetUp]
         public void Setup()
         {
-            uut = new TransponderdataReader(transponderReceiver:ITransponderdataReader);
+            _transponderReceiver = Substitute.For<ITransponderReceiver>();
+            uut = new TransponderdataReader(_transponderReceiver);
             transponderData = "ATR423;39045;12932;14000;20151006213456789";
         }
 
@@ -60,7 +62,7 @@ namespace ATM.Test.Unit
             Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Month, Is.EqualTo(10));
         }
 
-        [Test]
+         [Test]
         public void ReadTrackData_CorrectTimeStampDay()
         {
             Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Day, Is.EqualTo(06));
@@ -90,4 +92,4 @@ namespace ATM.Test.Unit
             Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Millisecond, Is.EqualTo(789));
         }
     }
-}*/
+}

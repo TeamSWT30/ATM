@@ -45,6 +45,31 @@ namespace ATM.Test.Unit
             //track 4 og 1 kolliderer, da der ikke er nok forskel i distance eller højde
 
         }
+
+        [Test]
+        public void NoCrashHeight()
+        {
+
+        }
+
+        [Test]
+        public void NoCrashCourse()
+        {
+
+        }
+
+        [Test]
+        public void NoCrashHeightAndCourse()
+        {
+
+        }
+
+        [Test]
+        public void Crash()
+        {
+
+        }
+
     }
 }
 
