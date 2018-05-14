@@ -10,7 +10,7 @@ namespace ATM
     public class Filtering : IFiltering
     {
         public event EventHandler<TracksFilteredEventArgs> TracksFiltered;
-        private List<Track> FilteredTracks;
+        public List<Track> FilteredTracks;
         private IAirspace _airspace;
 
         public Filtering(IAirspace airspace, ITransponderdataReader tdr)
@@ -20,7 +20,8 @@ namespace ATM
             tdr.TracksChanged += FilterTrack;
         }
 
-        private void FilterTrack(object o, TracksChangedEventArgs args)
+
+        public void FilterTrack(object o, TracksChangedEventArgs args)
         {
             foreach (var track in args.Tracks)
             {
