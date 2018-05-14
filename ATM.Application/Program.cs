@@ -13,11 +13,13 @@ namespace ATM.Application
         {
             var transponderReceiver = TransponderReceiverFactory.CreateTransponderDataReceiver();
             var transponderdataReader = new TransponderdataReader(transponderReceiver);
-            var conflict = new Conflict();
-            var trackRender = new TrackRender(conflict);
             var airspace = new Airspace();
+            var filtering = new Filtering(airspace, transponderdataReader);
             var calc = new CalcVelocityCourse();
-            var trackObjectification = new TrackObjectification(airspace, calc, conflict, trackRender, transponderdataReader);
+            var trackUpdate = new TrackUpdate(filtering, calc);
+            var proximityDetection = new ProximityDetection(trackUpdate);
+            var trackRender = new TrackRender(trackUpdate);
+            var eventRender = new EventRender(proximityDetection);
 
             Console.ReadLine();
         }

@@ -17,11 +17,10 @@ namespace ATM.Interfaces
         public string Tag1 { get; set; }
         public string Tag2 { get; set; }
         public DateTime Time { get; set; }
-
     }
-    public interface IConflict
+
+    public interface IProximityDetection
     {
-        event EventHandler<SeperationEventArgs> SeperationEvent;
-        void CheckForConflicts(List<Track> Tracks);
+        event EventHandler<SeperationEventArgs> Seperation;
     }
 }
