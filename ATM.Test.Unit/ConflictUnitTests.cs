@@ -16,9 +16,11 @@ namespace ATM.Test.Unit
         private Conflict _uut;
         private Track _track1;
         private Track _track2;
-        private List<Track> myTrackList;
         private Track _track3;
         private Track _track4;
+        private Track _track5;
+        private List<Track> myTrackList;
+       
 
         private TrackObjectification _trackObjectification;
 
@@ -26,35 +28,76 @@ namespace ATM.Test.Unit
         public void SetUp()
         {
             _uut = new Conflict();
-            _track1 = new Track();
-            _track2 = new Track();
-            _track3 = new Track();
-            _track4 = new Track();
+           
+            //track 1 og 3 krydser hinandens veje med stor højdeforskel
+            //track 1 og 2 flyver parallelt i samme højde
+            //track 3 og 4 kolliderer pga. højden
+            //track 4 og 5 kolliderer pga. distancen
 
-            
+             _track1 = new Track()
+            {
+                X = 20000,
+                Y = 20000,
+                Altitude = 12000,
+                Velocity = 235,
+                Course = 90,
+
+            };
+            _track2 = new Track()
+            {
+                X = 40000,
+                Y = 20000,
+                Altitude = 13000,
+                Velocity = 235,
+                Course = 0,
+            };
+             _track3 = new Track()
+            {
+                X = 20000,
+                Y = 30000,
+                Altitude = 12000,
+                Velocity = 235,
+                Course = 90,
+            };
+            _track4 = new Track
+            {
+                X = 40000,
+                Y = 50000,
+                Altitude = 1000,
+                Velocity = 235.70,
+                Course = 45,
+            };
+            _track5 = new Track
+            {
+                X = 70000,
+                Y = 50000,
+                Altitude = 1200,
+                Velocity = 235.70,
+                Course = 135,
+            };
+
             myTrackList = new List<Track>();
 
-        }
-
-        [Test]
-        public void CrashDetection_AllPlanesInCollidingPlanesList()
-        {
-            // track 1 og 2 kolliderer ikke pga højdeforskellen
-            //track 2 og 3 kolliderer ikke pga både højde- og distanceforskellen
-            // track 3 og 1 kolliderer ikke, da de flyver parallelt
-            //track 4 og 1 kolliderer, da der ikke er nok forskel i distance eller højde
+            myTrackList.Add(_track1);
+            myTrackList.Add(_track2);
+            myTrackList.Add(_track3);
+            myTrackList.Add(_track4);
+            myTrackList.Add(_track5);
 
         }
 
-        [Test]
-        public void NoCrashHeight()
-        {
-
+       [Test]
+        public void AllTracksInList()
+       {
+            _uut.CheckForConflicts(myTrackList);
+            List<Track> crashingPlanes = myTrackList;
+            Assert.That(crashingPlanes.Contains(_track1) && crashingPlanes.Contains(_track2) && crashingPlanes.Contains(_track3) && crashingPlanes.Contains(_track4) && crashingPlanes.Contains(_track5));
         }
 
         [Test]
         public void NoCrashCourse()
         {
+            
 
         }
 

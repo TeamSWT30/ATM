@@ -23,5 +23,6 @@ namespace ATM.Interfaces
     {
         event EventHandler<SeperationEventArgs> SeperationEvent;
         void CheckForConflicts(List<Track> Tracks);
+       
     }
 }
