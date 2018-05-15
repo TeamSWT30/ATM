@@ -45,17 +45,19 @@
   <ItemGroup>
     <Compile Include="Airspace.cs" />
     <Compile Include="CalcVelocityCourse.cs" />
-    <Compile Include="Conflict.cs" />
+    <Compile Include="EventRender.cs" />
     <Compile Include="Filtering.cs" />
     <Compile Include="Interfaces\IAirspace.cs" />
     <Compile Include="Interfaces\ICalcVelocityCourse.cs" />
-    <Compile Include="Interfaces\IConflict.cs" />
+    <Compile Include="Interfaces\IEventRender.cs" />
     <Compile Include="Interfaces\IFiltering.cs" />
     <Compile Include="Interfaces\IOutputToFile.cs" />
+    <Compile Include="Interfaces\IProximityDetection.cs" />
     <Compile Include="Interfaces\ITrackRender.cs" />
     <Compile Include="Interfaces\ITrackUpdate.cs" />
     <Compile Include="Interfaces\ITransponderdataReader.cs" />
     <Compile Include="OutputToFile.cs" />
+    <Compile Include="ProximityDetection.cs" />
     <Compile Include="Track.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrackObjectification.cs" />
