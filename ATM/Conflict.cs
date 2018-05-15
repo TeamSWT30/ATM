@@ -10,6 +10,7 @@ namespace ATM
     public class Conflict : IConflict
     {
         public event EventHandler<SeperationEventArgs> SeperationEvent;
+        public List<Track> ConflictingTracks;
 
         public void CheckForConflicts(List<Track> Tracks)
         {
@@ -24,10 +25,21 @@ namespace ATM
                     {
                         SeperationEventArgs SepEvent = new SeperationEventArgs(track1.Tag, track2.Tag, DateTime.Now);
                         OnSperationEvent(SepEvent);
+
+                        ConflictingTracks.Add(track1);
+                        ConflictingTracks.Add(track2);
+                        
                     }
                 }
             }
+
         }
+
+        public List<Track> ListOfConflicts()
+        {
+            return ConflictingTracks;
+        }
+
 
         private void OnSperationEvent(SeperationEventArgs args)
         {
