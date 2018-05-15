@@ -26,6 +26,7 @@ namespace ATM
                     int verticalDist = Math.Abs(track1.Altitude - track2.Altitude);
                     if (verticalDist < 300 && horisontalDist < 5000 && track1.Tag != track2.Tag)
                     {
+
                         var handler = Seperation;
                         handler?.Invoke(this, new SeperationEventArgs(track1.Tag, track2.Tag, DateTime.Now));
                     }
