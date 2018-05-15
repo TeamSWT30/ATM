@@ -19,6 +19,8 @@ namespace ATM.Test.Unit
         private TrackUpdate _uut;
         private IFiltering filtering;
         private ICalcVelocityCourse calcVelocityCourse;
+        private Track oldTrack;
+        private Track newTrack;
 
         [SetUp]
         public void SetUp()
@@ -26,11 +28,12 @@ namespace ATM.Test.Unit
             _uut = new TrackUpdate(filtering, calcVelocityCourse);
         }
 
-        [Test]
+        //[Test]
         public void TrackUpdated()
         {
+          
 
         }
-
+        
     }
 }
