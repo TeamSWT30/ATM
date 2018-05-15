@@ -1,4 +1,4 @@
-﻿/*using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,23 +30,31 @@ namespace ATM.Test.Unit
             _uut = new Filtering(_airspace, _dataReader);
 
         }
-        
+
+        //SW corner, max altitude
         [TestCase(10000, 10000, 20000)]
-        [TestCase(11000, 11000, 20000)]
-        [TestCase(89000, 89000, 500)]
+        //completely inside airspace
+        [TestCase(50000, 50000, 12000)]
+        //NE corner, min altitude
         [TestCase(90000, 90000, 500)]
         public void TrackInAirspaceAdded(int x, int y, int alt)
+        {
+            _track = new Track();
+            _track.X = x;
+            _track.Y = y;
+            _track.Altitude = alt;
+
+            Assert.That(_uut.FilteredTracks.Count, Is.EqualTo(3));
+        }
+
+        [TestCase(9999, 9999, 499)]
+        [TestCase(90001, 90001, 20001)]
+        public void TrackNotInAirspace(int x, int y, int alt)
         {
             _track = new Track() { X = x, Y = y, Altitude = alt };
 
 
-            Assert.That(_uut.FilterTrack(), Is.EqualTo(4));
-        }
-        
-        [Test]
-        public void TrackNotInAirspace()
-        {
-
+            Assert.That(_uut.FilteredTracks.Count, Is.EqualTo(0));
         }
     }
-} */
+}

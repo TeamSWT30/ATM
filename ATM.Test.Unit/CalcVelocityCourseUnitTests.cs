@@ -24,7 +24,6 @@ namespace ATM.Test.Unit
         }
 
         [Test]
-
         public void CalcVelocity_StraightHorisontal_RightVelocityOut()
         {
             Track oldTrack = new Track();

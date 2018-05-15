@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,11 +13,11 @@ namespace ATM
         private List<Track> Tracks;
         private IAirspace _airspace;
         private ICalcVelocityCourse _calc;
-        private IConflict _conflict;
+        private IProximityDetection _conflict;
         private ITrackRender _render;
         private ITransponderdataReader _transponderdataReader;
 
-        public TrackObjectification(IAirspace airspace, ICalcVelocityCourse calc, IConflict conflict, ITrackRender render, ITransponderdataReader transponderdataReader)
+        public TrackObjectification(IAirspace airspace, ICalcVelocityCourse calc, IProximityDetection conflict, ITrackRender render, ITransponderdataReader transponderdataReader)
         {
             Tracks = new List<Track>();
             _airspace = airspace;
@@ -70,7 +70,7 @@ namespace ATM
             {
                 _render.RenderTrack(track);
             }
-            _conflict.CheckForConflicts(Tracks);
+            _conflict.(Tracks);
         }
 
 
@@ -145,3 +145,4 @@ namespace ATM
         //}
     }
 }
+*/

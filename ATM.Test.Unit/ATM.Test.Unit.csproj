@@ -61,7 +61,7 @@
   <ItemGroup>
     <Compile Include="AirspaceUnitTests.cs" />
     <Compile Include="CalcVelocityCourseUnitTests.cs" />
-    <Compile Include="ConflictUnitTests.cs" />
+    <Compile Include="ProximityDetectionUnitTests.cs" />
     <Compile Include="FilteringUnitTests.cs" />
     <Compile Include="TrackObjectificationUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
