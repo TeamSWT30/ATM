@@ -16,7 +16,7 @@ namespace ATM
         public Filtering(IAirspace airspace, ITransponderdataReader tdr)
         {
             FilteredTracks = new List<Track>();
-
+            _airspace = airspace;
             tdr.TracksChanged += FilterTrack;
         }
 

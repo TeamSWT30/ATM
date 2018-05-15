@@ -50,12 +50,9 @@ namespace ATM
                     }
                 }
             }
-
-            if (UpdatedTracks.Count != 0)
-            {
-                var handler = TracksUpdated;
-                handler?.Invoke(this, new TracksUpdatedEventArgs(UpdatedTracks));
-            }
+            Console.Clear();
+            var handler = TracksUpdated;
+            handler?.Invoke(this, new TracksUpdatedEventArgs(UpdatedTracks));
         }
     }
 }

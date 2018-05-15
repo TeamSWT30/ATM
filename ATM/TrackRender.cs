@@ -16,7 +16,6 @@ namespace ATM
 
         private void RenderTracks(object o, TracksUpdatedEventArgs args)
         {
-            Console.Clear();
             foreach (var track in args.UpdatedTracks)
             {
                 RenderTrack(track);
@@ -25,14 +24,7 @@ namespace ATM
 
         public void RenderTrack(Track track)
         {
-            Console.WriteLine("Tag: " + track.Tag);
-            Console.WriteLine("X: " + track.X);
-            Console.WriteLine("Y: " + track.Y);
-            Console.WriteLine("Altitude: " + track.Altitude);
-            Console.WriteLine("Velocity: " + track.Velocity); 
-            Console.WriteLine("Course: " + track.Course);
-            Console.WriteLine("Timestamp: " + track.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss:fff"));
-            Console.WriteLine();
+            Console.WriteLine("Tag: " + track.Tag + ", X: " + track.X + ", Y: " + track.Y + ", Altitude: " + track.Altitude + ", Velocity: " + track.Velocity + ", Course: " + track.Course + ", Timestamp: " + track.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss:fff"));
         }
     }
 }

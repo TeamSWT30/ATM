@@ -8,7 +8,5 @@ namespace ATM.Interfaces
 {
     public interface IOutputToFile
     {
-        void WriteToFile(object sender, SeperationEventArgs e);
-
     }
 }
