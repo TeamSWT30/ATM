@@ -16,7 +16,11 @@ namespace ATM.Test.Unit
     {
         private ITransponderdataReader uut;
         private string transponderData;
+        private string newTransponderData;
         private ITransponderReceiver _transponderReceiver;
+        private Track oldtrack;
+        private Track newtrack;
+        private List<Track> _updatedTracks;
 
         [SetUp]
         public void Setup()
@@ -24,6 +28,24 @@ namespace ATM.Test.Unit
             _transponderReceiver = Substitute.For<ITransponderReceiver>();
             uut = new TransponderdataReader(_transponderReceiver);
             transponderData = "ATR423;39045;12932;14000;20151006213456789";
+            newTransponderData = "ATR423;39245;13132;14000;20151006213457789";
+            oldtrack = new Track()
+            {
+                Tag = "ATR423",
+                X = 39045,
+                Y = 12932,
+                Altitude = 14000,
+                TimeStamp = new DateTime(20151006212356789)
+            };
+
+            newtrack = new Track()
+            {
+                Tag = "ATR423",
+                X = 39245,
+                Y = 13132,
+                Altitude = 14000,
+                TimeStamp = new DateTime(20151006212357789)
+        };
         }
 
         [Test]
@@ -62,7 +84,7 @@ namespace ATM.Test.Unit
             Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Month, Is.EqualTo(10));
         }
 
-         [Test]
+        [Test]
         public void ReadTrackData_CorrectTimeStampDay()
         {
             Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Day, Is.EqualTo(06));
@@ -91,5 +113,20 @@ namespace ATM.Test.Unit
         {
             Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Millisecond, Is.EqualTo(789));
         }
+
+        [Test]
+        public void AddedToUpdatedTracks()
+        {
+            List<string> testTracks = new List<string>();
+            testTracks.Add(transponderData);
+            testTracks.Add(newTransponderData);
+
+            var args = new RawTransponderDataEventArgs(testTracks);
+            
+            _transponderReceiver.TransponderDataReady += Raise.EventWith(args);
+
+            Assert.That(_updatedTracks.Count, Is.EqualTo(1));
+        }
+
     }
 }
