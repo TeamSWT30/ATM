@@ -51,7 +51,6 @@ namespace ATM
                 }
                 //}
             }
-            Console.Clear();
             var handler = TracksUpdated;
             handler?.Invoke(this, new TracksUpdatedEventArgs(UpdatedTracks));
         }

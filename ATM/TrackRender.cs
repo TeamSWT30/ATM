@@ -9,13 +9,16 @@ namespace ATM
 {
     public class TrackRender : ITrackRender
     {
-        public TrackRender(ITrackUpdate trackUpdate)
+        private IOutput _output;
+        public TrackRender(ITrackUpdate trackUpdate, IOutput output)
         {
+            _output = output;
             trackUpdate.TracksUpdated += RenderTracks;
         }
 
         private void RenderTracks(object o, TracksUpdatedEventArgs args)
         {
+            _output.Clear();
             foreach (var track in args.UpdatedTracks)
             {
                 RenderTrack(track);
@@ -24,7 +27,7 @@ namespace ATM
 
         public void RenderTrack(Track track)
         {
-            Console.WriteLine("Tag: " + track.Tag + ", X: " + track.X + ", Y: " + track.Y + ", Altitude: " + track.Altitude + ", Velocity: " + track.Velocity + ", Course: " + track.Course + ", Timestamp: " + track.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss:fff"));
+            _output.OutputLine("Tag: " + track.Tag + ", X: " + track.X + ", Y: " + track.Y + ", Altitude: " + track.Altitude + ", Velocity: " + track.Velocity + ", Course: " + track.Course + ", Timestamp: " + track.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss:fff"));
         }
     }
 }
