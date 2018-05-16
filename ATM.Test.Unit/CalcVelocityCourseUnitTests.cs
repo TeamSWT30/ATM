@@ -88,21 +88,6 @@ namespace ATM.Test.Unit
         }
 
         [Test]
-        public void CalcCourse_East()
-        {
-            Track oldTrack = new Track();
-            Track newTrack = new Track();
-
-            oldTrack.X = 50000;
-            oldTrack.Y = 50000;
-
-            newTrack.X = 40000;
-            newTrack.Y = 50000;
-
-            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(90));
-        }
-
-        [Test]
         public void CalcCourse_North()
         {
             Track oldTrack = new Track();
@@ -132,6 +117,21 @@ namespace ATM.Test.Unit
 
 
             Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(45));
+        }
+
+        [Test]
+        public void CalcCourse_East()
+        {
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
+
+            oldTrack.X = 50000;
+            oldTrack.Y = 50000;
+
+            newTrack.X = 40000;
+            newTrack.Y = 50000;
+
+            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(90));
         }
 
         [Test]
@@ -167,6 +167,23 @@ namespace ATM.Test.Unit
         }
 
         [Test]
+        public void CalcCourse_SouththWest()
+        {
+            Track oldTrack = new Track();
+            Track newTrack = new Track();
+
+            oldTrack.X = 30000;
+            oldTrack.Y = 30000;
+
+            newTrack.X = 20000;
+            newTrack.Y = 20000;
+
+
+            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(225));
+        }
+
+        [Test]
+        
         public void CalcCourse_NorthWest()
         {
             Track oldTrack = new Track();
@@ -182,21 +199,7 @@ namespace ATM.Test.Unit
             Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(315));
         }
 
-        [Test]
-          public void CalcCourse_SouththWest()
-          {
-            Track oldTrack = new Track();
-            Track newTrack = new Track();
-
-            oldTrack.X = 30000;
-            oldTrack.Y = 30000;
-
-            newTrack.X = 20000;
-            newTrack.Y = 20000;
-
-
-            Assert.That(_uut.CalculateCourse(oldTrack, newTrack), Is.EqualTo(225));
-          }
+        
     }
 }
 
