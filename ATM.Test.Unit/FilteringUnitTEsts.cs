@@ -22,7 +22,6 @@ namespace ATM.Test.Unit
         private Track insideMiddle;
         private Track insideUpperBoundry;
         private Track outsideLowerBoundry;
-        private Track outsideMiddle;
         private Track outsideUpperBoundry;
         private int _nEventsRecieved;
         
@@ -53,7 +52,7 @@ namespace ATM.Test.Unit
         }
 
         [Test]
-        public void FilterTrack_ThreeTracksInAirspace_AddedToFilteretTracks()
+        public void FilterTrack_ThreeTracksInAirspace_AddedToFilteredTracks()
         {
             List<Track>testTracks = new List<Track>();
             testTracks.Add(insideLowerBoundry);
@@ -63,11 +62,13 @@ namespace ATM.Test.Unit
 
             _dataReader.TracksChanged += Raise.EventWith(args);
 
-            Assert.That(_filteredTracks, Is.EqualTo(testTracks));
+            Assert.That(_filteredTracks.Contains(insideLowerBoundry));
+            Assert.That(_filteredTracks.Contains(insideMiddle));
+            Assert.That(_filteredTracks.Contains(insideUpperBoundry));
         }
 
         [Test]
-        public void FilterTrack_TwoTracksOutsideAirspace_NotAddedToFilteretTracks()
+        public void FilterTrack_TwoTracksOutsideAirspace_NotAddedToFilteredTracks()
         {
             List<Track> testTracks = new List<Track>();
             testTracks.Add(outsideLowerBoundry);
@@ -76,7 +77,8 @@ namespace ATM.Test.Unit
 
             _dataReader.TracksChanged += Raise.EventWith(args);
 
-            Assert.That(_filteredTracks.Count, Is.EqualTo(0));
+            Assert.That(!_filteredTracks.Contains(outsideLowerBoundry));
+            Assert.That(!_filteredTracks.Contains(outsideUpperBoundry));
         }
 
         [Test]
@@ -93,5 +95,36 @@ namespace ATM.Test.Unit
             Assert.That(_nEventsRecieved, Is.EqualTo(2));
         }
 
+
+
+        //SW corner, max altitude
+        /*[TestCase(10000, 10000, 20000)]
+        //completely inside airspace
+        [TestCase(50000, 50000, 12000)]
+        //NE corner, min altitude
+        [TestCase(90000, 90000, 500)]
+
+        //Burde være 1, men er 0
+        public void TrackInAirspaceAdded(int x, int y, int alt)
+        {
+            _track = new Track() { X = x, Y = y, Altitude = alt };
+
+            //_filter.TracksFiltered += Raise.EventWith < new TracksFilteredEventArgs > ();
+
+            Assert.That(_uut.FilteredTracks.Count, Is.EqualTo(1));
+        }*/
+
+        //[TestCase(9999, 9999, 499)]
+        //[TestCase(90001, 90001, 20001)]
+        //public void TrackNotInAirspace(int x, int y, int alt)
+        //{
+        //    var _track = new Track() { X = x, Y = y, Altitude = alt };
+
+        //    //_filter.TracksFiltered += Raise.EventWith < new TracksFilteredEventArgs > ()
+        //    ;
+
+
+        //    Assert.That(_uut.FilteredTracks.Count, Is.EqualTo(0));
+        //}
     }
 }
