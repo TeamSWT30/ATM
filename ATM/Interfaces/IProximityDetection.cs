@@ -1,26 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
-namespace ATM.Interfaces
-{
-    public class SeperationEventArgs : EventArgs
-    {
-        public SeperationEventArgs(string tag1, string tag2, DateTime time)
-        {
-            Tag1 = tag1;
-            Tag2 = tag2;
-            Time = time;
-        }
-        public string Tag1 { get; set; }
-        public string Tag2 { get; set; }
-        public DateTime Time { get; set; }
-    }
+//namespace ATM.Interfaces
+//{
+//    public class SeperationEventArgs : EventArgs
+//    {
+//        public SeperationEventArgs(string tag1, string tag2, DateTime time)
+//        {
+//            Tag1 = tag1;
+//            Tag2 = tag2;
+//            Time = time;
+//        }
+//        public string Tag1 { get; set; }
+//        public string Tag2 { get; set; }
+//        public DateTime Time { get; set; }
+//    }
 
-    public interface IProximityDetection
-    {
-        event EventHandler<SeperationEventArgs> Seperation;
-    }
-}
+//    public interface IProximityDetection
+//    {
+//        event EventHandler<SeperationEventArgs> Seperation;
+//    }
+//}

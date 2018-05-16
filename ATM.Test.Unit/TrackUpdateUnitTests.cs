@@ -43,7 +43,9 @@ namespace ATM.Test.Unit
                 Tag = "test2",
                 X = 51000,
                 Y = 51000,
-                TimeStamp = DateTime.Now,
+                Course = 210,
+                Velocity = 310,
+                TimeStamp = DateTime.Now
             };
             _filtering = Substitute.For<IFiltering>();
             _calc = Substitute.For<ICalcVelocityCourse>();
@@ -91,25 +93,34 @@ namespace ATM.Test.Unit
 
             _filtering.TracksFiltered += Raise.EventWith(args);
             _testTrack1.X = 52000;
+            _testTrack1.Y = 52000;
+            _testTrack1.Altitude = 11000;
+
+
             args.FilteredTracks.Add(_testTrack1);
             _filtering.TracksFiltered += Raise.EventWith(args);
 
-            Assert.That(_testTrack1.X, Is.EqualTo(52000));
+            Assert.That(_updatedTracks.Contains(_testTrack1));
+            Assert.That(_updatedTracks.Count, Is.EqualTo(1));
+            Assert.That(_updatedTracks[_updatedTracks.IndexOf(_testTrack1)].Tag, Is.EqualTo("test1"));
+            Assert.That(_updatedTracks[_updatedTracks.IndexOf(_testTrack1)].X, Is.EqualTo(52000));
+            Assert.That(_updatedTracks[_updatedTracks.IndexOf(_testTrack1)].Y, Is.EqualTo(52000));
+            Assert.That(_updatedTracks[_updatedTracks.IndexOf(_testTrack1)].Altitude, Is.EqualTo(11000));
         }
 
-        //[Test]
-        //public void FilterTrack_TracksAddedTwice_NumberOfEventsReceivedIsCorrect()
-        //{
-        //    List<Track> testTracks = new List<Track>();
-        //    testTracks.Add(insideLowerBoundry);
-        //    var args = new TracksChangedEventArgs(testTracks);
+        [Test]
+        public void UpdateTrack_TracksAddedTwice_NumberOfEventsReceivedIsCorrect()
+        {
+            List<Track> testTracks = new List<Track>();
+            testTracks.Add(_testTrack1);
+            var args = new TracksFilteredEventArgs(testTracks);
 
-        //    _dataReader.TracksChanged += Raise.EventWith(args);
-        //    args.Tracks.Add(insideUpperBoundry);
-        //    _dataReader.TracksChanged += Raise.EventWith(args);
+            _filtering.TracksFiltered += Raise.EventWith(args);
+            args.FilteredTracks.Add(_testTrack2);
+            _filtering.TracksFiltered += Raise.EventWith(args);
 
-        //    Assert.That(_nEventsRecieved, Is.EqualTo(2));
-        //}
+            Assert.That(_nEventsRecieved, Is.EqualTo(2));
+        }
 
     }
 }
