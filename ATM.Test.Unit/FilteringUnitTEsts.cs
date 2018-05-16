@@ -56,9 +56,9 @@ namespace ATM.Test.Unit
         public void FilterTrack_ThreeTracksInAirspace_AddedToFilteretTracks()
         {
             List<Track>testTracks = new List<Track>();
-            testTracks.Add(trackLowerBoundry);
-            testTracks.Add(trackMiddle);
-            testTracks.Add(trackUpperBoundry);
+            testTracks.Add(insideLowerBoundry);
+            testTracks.Add(insideMiddle);
+            testTracks.Add(insideUpperBoundry);
             var args = new TracksChangedEventArgs(testTracks);
             _dataReader.TracksChanged += Raise.EventWith(args);
             Assert.That(_filteredTracks, Is.EqualTo(testTracks));

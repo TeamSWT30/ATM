@@ -27,12 +27,12 @@ namespace ATM
             double Y = Math.Abs(newTrack.Y - oldTrack.Y);
             double course = Math.Atan2(X, Y) * (180 / Math.PI);
 
-            if (course < 0)
+            /*if (course < 0)
             {
-                course += 360;
-            }
+                course += 270;
+            }*/
 
-            if (newTrack.X > oldTrack.X && newTrack.Y < oldTrack.Y)
+            if (newTrack.X > oldTrack.X && newTrack.Y <= oldTrack.Y)
             {
                 course += 90;
             }
