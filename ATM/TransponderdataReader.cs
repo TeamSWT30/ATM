@@ -14,13 +14,14 @@ namespace ATM
         public event EventHandler<TracksChangedEventArgs> TracksChanged;
         private List<Track> tracks;
 
+        
         public TransponderdataReader(ITransponderReceiver transponderReceiver)
         {
             tracks = new List<Track>();
 
             transponderReceiver.TransponderDataReady += UpdateTrack;
         }
-
+        
         private void UpdateTrack(object o, RawTransponderDataEventArgs args)
         {
             tracks.Clear();

@@ -113,7 +113,7 @@ namespace ATM.Test.Unit
         {
             Assert.That(uut.ReadTrackData(transponderData).TimeStamp.Millisecond, Is.EqualTo(789));
         }
-
+        /*
         [Test]
         public void AddedToUpdatedTracks()
         {
@@ -126,7 +126,7 @@ namespace ATM.Test.Unit
             _transponderReceiver.TransponderDataReady += Raise.EventWith(args);
 
             Assert.That(_updatedTracks.Count, Is.EqualTo(1));
-        }
+        }*/
 
     }
 }
