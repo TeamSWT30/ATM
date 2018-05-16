@@ -30,12 +30,8 @@ namespace ATM
                     FilteredTracks.Add(track);
                 }
             }
-
-            if (FilteredTracks.Count != 0)
-            {
-                var handler = TracksFiltered;
-                handler?.Invoke(this, new TracksFilteredEventArgs(FilteredTracks));
-            }
+            var handler = TracksFiltered;
+            handler?.Invoke(this, new TracksFilteredEventArgs(FilteredTracks));
         }
     }
 }

@@ -17,9 +17,9 @@ namespace ATM.Application
             var filtering = new Filtering(airspace, transponderdataReader);
             var calc = new CalcVelocityCourse();
             var trackUpdate = new TrackUpdate(filtering, calc);
-            var proximityDetection = new ProximityDetection(trackUpdate);
+            //var proximityDetection = new ProximityDetection(trackUpdate);
             var trackRender = new TrackRender(trackUpdate);
-            var eventRender = new EventRender(proximityDetection);
+            //var eventRender = new EventRender(proximityDetection);
 
             Console.ReadLine();
         }
