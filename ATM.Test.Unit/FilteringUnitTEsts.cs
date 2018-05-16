@@ -60,8 +60,37 @@ namespace ATM.Test.Unit
             testTracks.Add(insideMiddle);
             testTracks.Add(insideUpperBoundry);
             var args = new TracksChangedEventArgs(testTracks);
+
             _dataReader.TracksChanged += Raise.EventWith(args);
+
             Assert.That(_filteredTracks, Is.EqualTo(testTracks));
+        }
+
+        [Test]
+        public void FilterTrack_TwoTracksOutsideAirspace_NotAddedToFilteretTracks()
+        {
+            List<Track> testTracks = new List<Track>();
+            testTracks.Add(outsideLowerBoundry);
+            testTracks.Add(outsideUpperBoundry);
+            var args = new TracksChangedEventArgs(testTracks);
+
+            _dataReader.TracksChanged += Raise.EventWith(args);
+
+            Assert.That(_filteredTracks.Count, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void FilterTrack_TracksAddedTwice_NumberOfEventsReceivedIsCorrect()
+        {
+            List<Track> testTracks = new List<Track>();
+            testTracks.Add(insideLowerBoundry);
+            var args = new TracksChangedEventArgs(testTracks);
+
+            _dataReader.TracksChanged += Raise.EventWith(args);
+            args.Tracks.Add(insideUpperBoundry);
+            _dataReader.TracksChanged += Raise.EventWith(args);
+
+            Assert.That(_nEventsRecieved, Is.EqualTo(2));
         }
 
 
