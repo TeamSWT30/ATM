@@ -24,31 +24,32 @@ namespace ATM
 
         private void UpdateTrack(object o, TracksFilteredEventArgs args)
         {
-            if (args.FilteredTracks.Count != 0 && UpdatedTracks.Count == 0)
-            {
-                foreach (var track in args.FilteredTracks)
-                {
-                    UpdatedTracks.Add(track);
-                }
-            }
+            //if (args.FilteredTracks.Count != 0 && UpdatedTracks.Count == 0)
+            //{
+            //    foreach (var track in args.FilteredTracks)
+            //    {
+            //        UpdatedTracks.Add(track);
+            //    }
+            //}
 
-            else if (args.FilteredTracks.Count != 0 && UpdatedTracks.Count != 0)
+            //else if (args.FilteredTracks.Count != 0 && UpdatedTracks.Count != 0)
+            //{
+            foreach (var newTrack in args.FilteredTracks)
             {
-                foreach (var newTrack in args.FilteredTracks)
+                var oldTrack = UpdatedTracks.Find(i => i.Tag == newTrack.Tag);
+                if (oldTrack == null)
                 {
-                    var oldTrack = UpdatedTracks.Find(i => i.Tag == newTrack.Tag);
-                    if (oldTrack == null)
-                    {
-                        UpdatedTracks.Add(newTrack);
-                    }
-
-                    else
-                    {
-                        newTrack.Course = _calc.CalculateCourse(UpdatedTracks[UpdatedTracks.IndexOf(oldTrack)], newTrack);
-                        newTrack.Velocity = _calc.CalculateVelocity(UpdatedTracks[UpdatedTracks.IndexOf(oldTrack)], newTrack);
-                        UpdatedTracks[UpdatedTracks.IndexOf(oldTrack)] = newTrack;
-                    }
+                    UpdatedTracks.Add(newTrack);
                 }
+
+                else
+                {
+                    newTrack.Course = _calc.CalculateCourse(UpdatedTracks[UpdatedTracks.IndexOf(oldTrack)], newTrack);
+                    newTrack.Velocity =
+                        _calc.CalculateVelocity(UpdatedTracks[UpdatedTracks.IndexOf(oldTrack)], newTrack);
+                    UpdatedTracks[UpdatedTracks.IndexOf(oldTrack)] = newTrack;
+                }
+                //}
             }
             Console.Clear();
             var handler = TracksUpdated;

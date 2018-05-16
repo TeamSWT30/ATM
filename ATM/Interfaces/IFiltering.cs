@@ -10,9 +10,9 @@ namespace ATM.Interfaces
     {
         public List<Track> FilteredTracks { get; set; }
 
-        public TracksFilteredEventArgs(List<Track> FilTracks)
+        public TracksFilteredEventArgs(List<Track> filTracks)
         {
-            FilteredTracks = FilTracks;
+            FilteredTracks = filTracks;
         }
     }
 
