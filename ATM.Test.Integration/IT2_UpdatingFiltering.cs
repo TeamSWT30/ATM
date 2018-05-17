@@ -38,7 +38,6 @@ namespace ATM.Test.Integration
             _uut = new Updating(_filtering, _calculating);
             transponderDataInside = "ATR423;39045;12932;14000;20151006213456789";
             transponderDataInside2 = "ATR423;39045;12937;14000;20151006213457789";
-            transponderDataOutside = "ATR424;95000;95000;25000;20151006213457789";
 
             _uut.TracksUpdated += (o, args) =>
             {
