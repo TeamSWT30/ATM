@@ -69,10 +69,6 @@ namespace ATM.Test.Unit
             var args = new TracksUpdatedEventArgs(testTracks);
             _trackUpdate.TracksUpdated += Raise.EventWith(args);
 
-            _output.Received().OutputLine("Tag: " + _testTrack1.Tag + ", X: " + _testTrack1.X + ", Y: " +
-                                          _testTrack1.Y + ", Altitude: " + _testTrack1.Altitude + ", Velocity: " +
-                                          _testTrack1.Velocity + ", Course: " + _testTrack1.Course + ", Timestamp: " +
-                                          _testTrack1.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss:fff"));
             _output.Received().OutputLine("Tag: " + _testTrack2.Tag + ", X: " + _testTrack2.X + ", Y: " +
                                           _testTrack2.Y + ", Altitude: " + _testTrack2.Altitude + ", Velocity: " +
                                           _testTrack2.Velocity + ", Course: " + _testTrack2.Course + ", Timestamp: " +

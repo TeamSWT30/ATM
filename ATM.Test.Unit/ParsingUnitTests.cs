@@ -29,7 +29,7 @@ namespace ATM.Test.Unit
             _transponderReceiver = Substitute.For<ITransponderReceiver>();
             uut = new Parsing(_transponderReceiver);
             transponderData = "ATR423;39045;12932;14000;20151006213456789";
-            newTransponderData = "ATR423;39245;13132;14000;20151006213457789";
+            newTransponderData = "ATR424;39245;13132;14000;20151006213457789";
 
             uut.TracksChanged += (o, args) =>
             {
@@ -105,32 +105,30 @@ namespace ATM.Test.Unit
         }
         
         [Test]
-        public void ReadTransponderdata_twoTransponderdataStringsAdded_TracksContainNewTracksWithTransponderdata()
+        public void ReadTransponderdata_TransponderdataStringsAdded_TracksContainNewTrackWithTransponderdata()
         {
             List<string> transponderStrings = new List<string>();
             transponderStrings.Add(transponderData);
-            transponderStrings.Add(newTransponderData);
             var args = new RawTransponderDataEventArgs(transponderStrings);
             
             _transponderReceiver.TransponderDataReady += Raise.EventWith(args);
 
             string[] seperatedStrings = transponderData.Split(';');
-            string[] seperatedStrings2 = newTransponderData.Split(';');
 
             Assert.That(_tracks[0].Tag, Is.EqualTo(seperatedStrings[0]));
-            Assert.That(_tracks[0].X, Is.EqualTo(Int32.Parse(seperatedStrings[1])));
-            Assert.That(_tracks[0].Y, Is.EqualTo(Int32.Parse(seperatedStrings[2])));
-            Assert.That(_tracks[0].Altitude, Is.EqualTo(Int32.Parse(seperatedStrings[3])));
-            Assert.That(_tracks[0].TimeStamp, Is.EqualTo(DateTime.ParseExact(seperatedStrings[4], "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture)));
-            Assert.That(_tracks[0].Course, Is.EqualTo(0));
-            Assert.That(_tracks[0].Velocity, Is.EqualTo(0));
-            Assert.That(_tracks[1].Tag, Is.EqualTo(seperatedStrings2[0]));
-            Assert.That(_tracks[1].X, Is.EqualTo(Int32.Parse(seperatedStrings2[1])));
-            Assert.That(_tracks[1].Y, Is.EqualTo(Int32.Parse(seperatedStrings2[2])));
-            Assert.That(_tracks[1].Altitude, Is.EqualTo(Int32.Parse(seperatedStrings2[3])));
-            Assert.That(_tracks[1].TimeStamp, Is.EqualTo(DateTime.ParseExact(seperatedStrings2[4], "yyyyMMddHHmmssfff", CultureInfo.InvariantCulture)));
-            Assert.That(_tracks[1].Course, Is.EqualTo(0));
-            Assert.That(_tracks[1].Velocity, Is.EqualTo(0));
+        }
+
+        [Test]
+        public void ReadTransponderdata_TwoTransponderdataStringsAdded_TracksContainNewTracksWithTransponderdata()
+        {
+            List<string> transponderStrings = new List<string>();
+            transponderStrings.Add(transponderData);
+            transponderStrings.Add(newTransponderData);
+            var args = new RawTransponderDataEventArgs(transponderStrings);
+
+            _transponderReceiver.TransponderDataReady += Raise.EventWith(args);
+
+            Assert.That(_tracks.Count, Is.EqualTo(2));
         }
 
         [Test]
@@ -145,6 +143,17 @@ namespace ATM.Test.Unit
             _transponderReceiver.TransponderDataReady += Raise.EventWith(args);
 
             Assert.That(_nEventsReceived, Is.EqualTo(2));
+        }
+
+        [Test]
+        public void ReadTransponderdata_NoTransponderdataAdded_NumberOfEventsReceivedIsCorrect()
+        {
+            List<string> transponderStrings = new List<string>();
+            var args = new RawTransponderDataEventArgs(transponderStrings);
+
+            _transponderReceiver.TransponderDataReady += Raise.EventWith(args);
+
+            Assert.That(_nEventsReceived, Is.EqualTo(0));
         }
 
     }

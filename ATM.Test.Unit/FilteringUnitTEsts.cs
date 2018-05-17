@@ -52,6 +52,18 @@ namespace ATM.Test.Unit
         }
 
         [Test]
+        public void FilterTrack_OneTracksInAirspace_AddedToFilteredTracks()
+        {
+            List<Track> testTracks = new List<Track>();
+            testTracks.Add(insideMiddle);
+            var args = new TracksChangedEventArgs(testTracks);
+
+            _dataReader.TracksChanged += Raise.EventWith(args);
+
+            Assert.That(_filteredTracks.Contains(insideMiddle));
+        }
+
+        [Test]
         public void FilterTrack_ThreeTracksInAirspace_AddedToFilteredTracks()
         {
             List<Track>testTracks = new List<Track>();
@@ -62,11 +74,20 @@ namespace ATM.Test.Unit
 
             _dataReader.TracksChanged += Raise.EventWith(args);
 
-            Assert.That(_filteredTracks.Contains(insideLowerBoundry));
-            Assert.That(_filteredTracks.Contains(insideMiddle));
-            Assert.That(_filteredTracks.Contains(insideUpperBoundry));
+            Assert.That(_filteredTracks.Count, Is.EqualTo(3));
         }
 
+        [Test]
+        public void FilterTrack_TrackOutsideAirspace_NotAddedToFilteredTracks()
+        {
+            List<Track> testTracks = new List<Track>();
+            testTracks.Add(outsideLowerBoundry);
+            var args = new TracksChangedEventArgs(testTracks);
+
+            _dataReader.TracksChanged += Raise.EventWith(args);
+
+            Assert.That(!_filteredTracks.Contains(outsideLowerBoundry));
+        }
         [Test]
         public void FilterTrack_TwoTracksOutsideAirspace_NotAddedToFilteredTracks()
         {
@@ -77,8 +98,7 @@ namespace ATM.Test.Unit
 
             _dataReader.TracksChanged += Raise.EventWith(args);
 
-            Assert.That(!_filteredTracks.Contains(outsideLowerBoundry));
-            Assert.That(!_filteredTracks.Contains(outsideUpperBoundry));
+            Assert.That(_filteredTracks.Count, Is.EqualTo(0));
         }
 
         [Test]
