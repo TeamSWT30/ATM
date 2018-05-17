@@ -47,7 +47,7 @@ namespace ATM.Test.Unit
         }
 
         [Test]
-        public void RenderTrack_RenderOneTrack_CorrectOutput()
+        public void RenderTrack_RenderTrack_CorrectOutput()
         {
             List<Track> testTracks = new List<Track>();
             testTracks.Add(_testTrack1);
@@ -56,23 +56,7 @@ namespace ATM.Test.Unit
 
             _output.Received().OutputLine("Tag: " + _testTrack1.Tag + ", X: " + _testTrack1.X + ", Y: " +
                                           _testTrack1.Y + ", Altitude: " + _testTrack1.Altitude + ", Velocity: " +
-                                          _testTrack1.Velocity + ", Course: " + _testTrack1.Course + ", Timestamp: " +
-                                          _testTrack1.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss:fff"));
-        }
-
-        [Test]
-        public void RenderTrack_RenderTwoTracks_CorrectOutput()
-        {
-            List<Track> testTracks = new List<Track>();
-            testTracks.Add(_testTrack1);
-            testTracks.Add(_testTrack2);
-            var args = new TracksUpdatedEventArgs(testTracks);
-            _trackUpdate.TracksUpdated += Raise.EventWith(args);
-
-            _output.Received().OutputLine("Tag: " + _testTrack2.Tag + ", X: " + _testTrack2.X + ", Y: " +
-                                          _testTrack2.Y + ", Altitude: " + _testTrack2.Altitude + ", Velocity: " +
-                                          _testTrack2.Velocity + ", Course: " + _testTrack2.Course + ", Timestamp: " +
-                                          _testTrack2.TimeStamp.ToString("yyyy-MM-dd HH:mm:ss:fff"));
+                                          _testTrack1.Velocity + ", Course: " + _testTrack1.Course);
         }
     }
 }

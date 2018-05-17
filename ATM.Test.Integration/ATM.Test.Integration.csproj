@@ -59,8 +59,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="IT1_FilteringParsing.cs" />
+    <Compile Include="IT3_RenderingUpdating.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IT2_UpdatingFiltering.cs" />
   </ItemGroup>

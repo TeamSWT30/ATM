@@ -27,8 +27,6 @@ namespace ATM
             double Y = Math.Abs(newTrack.Y - oldTrack.Y);
             double course = Math.Atan2(X, Y) * (180 / Math.PI);
 
-            transponderDataInside = "ATR423;39045;12932;14000;20151006213456789";
-
 
             if (newTrack.X > oldTrack.X && newTrack.Y <= oldTrack.Y)
             {
