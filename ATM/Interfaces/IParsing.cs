@@ -15,7 +15,7 @@ namespace ATM.Interfaces
             Tracks = tracks;
         }
     }
-    public interface ITransponderdataReader
+    public interface IParsing
     {
         Track ReadTrackData(string trackData);
         event EventHandler<TracksChangedEventArgs> TracksChanged;

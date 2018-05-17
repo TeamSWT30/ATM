@@ -13,9 +13,9 @@ using ATM.Interfaces;
 namespace ATM.Test.Unit
 {
     [TestFixture]
-    public class TransponderdataReaderUnitTests
+    public class ParsingUnitTests
     {
-        private TransponderdataReader uut;
+        private Parsing uut;
         private string transponderData;
         private string newTransponderData;
         private ITransponderReceiver _transponderReceiver;
@@ -27,7 +27,7 @@ namespace ATM.Test.Unit
         {
             _nEventsReceived = 0;
             _transponderReceiver = Substitute.For<ITransponderReceiver>();
-            uut = new TransponderdataReader(_transponderReceiver);
+            uut = new Parsing(_transponderReceiver);
             transponderData = "ATR423;39045;12932;14000;20151006213456789";
             newTransponderData = "ATR423;39245;13132;14000;20151006213457789";
 

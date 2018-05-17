@@ -60,13 +60,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AirspaceUnitTests.cs" />
-    <Compile Include="CalcVelocityCourseUnitTests.cs" />
+    <Compile Include="CalculatingUnitTests.cs" />
     <Compile Include="FilteringUnitTests.cs" />
     <Compile Include="TrackObjectificationUnitTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TrackRenderUnitTests.cs" />
-    <Compile Include="TrackUpdateUnitTests.cs" />
-    <Compile Include="TransponderdataReaderUnitTests.cs" />
+    <Compile Include="RenderingUnitTests.cs" />
+    <Compile Include="UpdatingUnitTests.cs" />
+    <Compile Include="ParsingUnitTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

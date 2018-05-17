@@ -7,10 +7,10 @@ using ATM.Interfaces;
 
 namespace ATM
 {
-    public class TrackRender : ITrackRender
+    public class Rendering : IRendering
     {
         private IOutput _output;
-        public TrackRender(ITrackUpdate trackUpdate, IOutput output)
+        public Rendering(IUpdating trackUpdate, IOutput output)
         {
             _output = output;
             trackUpdate.TracksUpdated += RenderTracks;

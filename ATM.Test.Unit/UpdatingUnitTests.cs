@@ -12,11 +12,11 @@ using TransponderReceiver;
 namespace ATM.Test.Unit
 {
     [TestFixture]
-    class TrackUpdateUnitTests
+    class UpdatingUnitTests
     {
-        private TrackUpdate _uut;
+        private Updating _uut;
         private IFiltering _filtering;
-        private ICalcVelocityCourse _calc;
+        private ICalculating _calc;
         private List<Track> _updatedTracks;
         private int _nEventsRecieved;
         private Track _testTrack1;
@@ -48,8 +48,8 @@ namespace ATM.Test.Unit
                 TimeStamp = DateTime.Now
             };
             _filtering = Substitute.For<IFiltering>();
-            _calc = Substitute.For<ICalcVelocityCourse>();
-            _uut = new TrackUpdate(_filtering, _calc);
+            _calc = Substitute.For<ICalculating>();
+            _uut = new Updating(_filtering, _calc);
 
             _uut.TracksUpdated += (o, args) =>
             {

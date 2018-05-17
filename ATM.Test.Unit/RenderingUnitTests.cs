@@ -10,10 +10,10 @@ using NUnit.Framework;
 namespace ATM.Test.Unit
 {
     [TestFixture]
-    class TrackRenderUnitTests
+    class RenderingUnitTests
     {
-        private TrackRender _uut;
-        private ITrackUpdate _trackUpdate;
+        private Rendering _uut;
+        private IUpdating _trackUpdate;
         private IOutput _output;
         private Track _testTrack1;
         private Track _testTrack2;
@@ -41,9 +41,9 @@ namespace ATM.Test.Unit
                 TimeStamp = DateTime.Now,
                 Velocity = 310
             };
-            _trackUpdate = Substitute.For<ITrackUpdate>();
+            _trackUpdate = Substitute.For<IUpdating>();
             _output = Substitute.For<IOutput>();
-            _uut = new TrackRender(_trackUpdate, _output);
+            _uut = new Rendering(_trackUpdate, _output);
         }
 
         [Test]

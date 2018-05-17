@@ -7,14 +7,14 @@ using ATM.Interfaces;
 
 namespace ATM
 {
-    public class TrackUpdate : ITrackUpdate
+    public class Updating : IUpdating
     {
         public event EventHandler<TracksUpdatedEventArgs> TracksUpdated;
         private List<Track> UpdatedTracks;
-        private ICalcVelocityCourse _calc;
+        private ICalculating _calc;
 
 
-        public TrackUpdate(IFiltering filtering, ICalcVelocityCourse calcVelocityCourse)
+        public Updating(IFiltering filtering, ICalculating calcVelocityCourse)
         {
             UpdatedTracks = new List<Track>();
             _calc = calcVelocityCourse;

@@ -13,7 +13,7 @@ namespace ATM
         public List<Track> FilteredTracks;
         private IAirspace _airspace;
 
-        public Filtering(IAirspace airspace, ITransponderdataReader tdr)
+        public Filtering(IAirspace airspace, IParsing tdr)
         {
             FilteredTracks = new List<Track>();
             _airspace = airspace;

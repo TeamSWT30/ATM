@@ -16,7 +16,7 @@ namespace ATM.Interfaces
         }
     }
 
-    public interface ITrackUpdate
+    public interface IUpdating
     {
         event EventHandler<TracksUpdatedEventArgs> TracksUpdated;
     }

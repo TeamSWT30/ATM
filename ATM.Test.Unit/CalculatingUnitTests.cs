@@ -13,14 +13,14 @@ using TransponderReceiver;
 namespace ATM.Test.Unit
 {
     [TestFixture]
-    class CalcVelocityCourseUnitTests
+    class CalculatingUnitTests
     {
-        private CalcVelocityCourse _uut;
+        private Calculating _uut;
 
         [SetUp]
         public void SetUp()
         {
-            _uut = new CalcVelocityCourse();
+            _uut = new Calculating();
         }
 
         [Test]

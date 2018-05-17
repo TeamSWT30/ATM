@@ -7,7 +7,7 @@ using ATM.Interfaces;
 
 namespace ATM
 {
-    public class CalcVelocityCourse : ICalcVelocityCourse
+    public class Calculating : ICalculating
     {
         public double CalculateVelocity(Track oldTrack, Track newTrack)
         {

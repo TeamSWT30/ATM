@@ -9,13 +9,13 @@ using ATM.Interfaces;
 
 namespace ATM
 {
-    public class TransponderdataReader : ITransponderdataReader
+    public class Parsing : IParsing
     {
         public event EventHandler<TracksChangedEventArgs> TracksChanged;
         private List<Track> tracks;
 
         
-        public TransponderdataReader(ITransponderReceiver transponderReceiver)
+        public Parsing(ITransponderReceiver transponderReceiver)
         {
             tracks = new List<Track>();
 
